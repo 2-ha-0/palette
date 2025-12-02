@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -127,7 +129,7 @@ export default function Home() {
       price: "300,000원",
       location: "서울시 종로구",
       time: "1일 전",
-      image: "/images/products/product1.jpg",
+      image: "/images/products/product6.jpg",
       likes: 19,
       isNew: true,
     },
@@ -154,32 +156,30 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-lime-50/40 via-yellow-50/30 to-lime-50/40">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-lime-200/40 bg-white/60 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/40 supports-[backdrop-filter]:backdrop-blur-2xl">
+      <header className="sticky top-0 z-50 w-full border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-zinc-950/60 supports-[backdrop-filter]:backdrop-blur-2xl">
         <div className="container mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-lime-300/80 via-yellow-300/80 to-lime-400/80 smooth-shadow-lg shadow-lime-300/30">
-                <ShoppingBag className="h-6 w-6 text-white" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow-lg shadow-lime-400/20">
+                <ShoppingBag className="h-6 w-6 text-black" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-lime-500/90 via-yellow-500/90 to-lime-500/90 bg-clip-text text-transparent">
-                  골드키위
-                </h1>
-                <p className="text-xs text-lime-600/70 font-medium">
-                  부드러운 중고거래
+                <h1 className="text-2xl font-bold text-white">골드키위</h1>
+                <p className="text-xs text-zinc-400 font-medium">
+                  프리미엄 중고거래
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Button
                 variant="ghost"
-                className="font-medium text-foreground/80 hover:text-foreground hover:bg-lime-50"
+                className="font-medium text-zinc-300 hover:text-white hover:bg-zinc-800"
               >
                 로그인
               </Button>
-              <Button className="bg-gradient-to-r from-lime-300/90  to-lime-400/90 text-foreground hover:from-lime-400/90 hover:via-yellow-400/90 hover:to-lime-500/90 smooth-shadow-lg shadow-lime-300/30 hover:shadow-lime-400/40 transition-all duration-300">
+              <Button className="bg-gradient-to-r from-lime-400 to-yellow-400 text-black hover:from-lime-500 hover:to-yellow-500 smooth-shadow-lg shadow-lime-400/30 hover:shadow-lime-400/50 transition-all duration-300 font-semibold">
                 회원가입
               </Button>
             </div>
@@ -190,21 +190,21 @@ export default function Home() {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center space-y-6 mb-12">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-lime-100 to-yellow-100 border border-lime-200/50 text-lime-700 text-sm font-semibold smooth-shadow">
-            <Sparkles className="h-4 w-4 text-lime-500" />
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 text-sm font-semibold smooth-shadow backdrop-blur-sm">
+            <Sparkles className="h-4 w-4 text-lime-400" />
             <span>새로운 상품이 매일 업데이트됩니다</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white">
             원하는 상품을
             <br />
-            <span className="bg-gradient-to-r from-lime-500/80 via-yellow-500/80 to-lime-500/80 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-lime-400 via-yellow-400 to-lime-400 bg-clip-text text-transparent">
               쉽고 빠르게
             </span>
             <br />
             찾아보세요
           </h2>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-            믿을 수 있는 중고거래 플랫폼에서 최고의 상품을 만나보세요
+          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+            프리미엄 중고거래 플랫폼에서 최고의 상품을 만나보세요
           </p>
         </div>
 
@@ -212,16 +212,16 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
           <div className="flex gap-3">
             <div className="relative flex-1 group">
-              <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-lime-500/60 group-focus-within:text-lime-500 transition-colors duration-300" />
+              <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400 group-focus-within:text-lime-400 transition-colors duration-300" />
               <Input
                 type="search"
                 placeholder="찾고 싶은 상품을 검색해보세요..."
-                className="pl-14 h-16 text-base border-2 border-lime-200/50 focus:border-lime-400/50 focus:ring-2 focus:ring-lime-200/30 rounded-2xl bg-white/80 backdrop-blur-sm smooth-shadow hover:shadow-md transition-all duration-300"
+                className="pl-14 h-16 text-base border-2 border-zinc-800 focus:border-lime-400/50 focus:ring-2 focus:ring-lime-400/20 rounded-xl bg-zinc-900/50 backdrop-blur-sm smooth-shadow hover:shadow-md transition-all duration-300 text-white placeholder:text-zinc-500"
               />
             </div>
             <Button
               size="lg"
-              className="h-16 px-10 bg-gradient-to-r from-lime-300/90  to-lime-400/90 text-foreground hover:from-lime-400/90 hover:via-yellow-400/90 hover:to-lime-500/90 smooth-shadow-lg shadow-lime-300/30 hover:shadow-lime-400/40 rounded-2xl transition-all duration-300 font-semibold"
+              className="h-16 px-10 bg-gradient-to-r from-lime-400 to-yellow-400 text-black hover:from-lime-500 hover:to-yellow-500 smooth-shadow-lg shadow-lime-400/30 hover:shadow-lime-400/50 rounded-xl transition-all duration-300 font-semibold"
             >
               검색
             </Button>
@@ -232,10 +232,8 @@ export default function Home() {
       {/* Categories */}
       <section className="container mx-auto px-4 py-10">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-lime-500/80  to-lime-600/80 bg-clip-text text-transparent">
-            카테고리
-          </h2>
-          <p className="text-foreground/60">원하는 카테고리를 선택하세요</p>
+          <h2 className="text-3xl font-bold mb-2 text-white">카테고리</h2>
+          <p className="text-zinc-400">원하는 카테고리를 선택하세요</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
           {categories.map((category) => {
@@ -243,18 +241,18 @@ export default function Home() {
             return (
               <button
                 key={category.name}
-                className="group relative flex flex-col items-center gap-4 p-6 rounded-3xl border-2 border-lime-200/50 bg-white/80 backdrop-blur-sm hover:border-lime-300/70 hover:bg-white smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1.5 transition-all duration-500"
+                className="group relative flex flex-col items-center gap-4 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 hover:bg-zinc-900 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-500"
               >
                 <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${category.color} smooth-shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}
+                  className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${category.color} smooth-shadow-lg group-hover:scale-110 transition-all duration-500`}
                 >
                   <Icon className="h-8 w-8 text-white" />
                 </div>
                 <div className="text-center">
-                  <span className="block font-semibold text-base mb-1 text-foreground group-hover:text-lime-600 transition-colors">
+                  <span className="block font-semibold text-base mb-1 text-white group-hover:text-lime-400 transition-colors">
                     {category.name}
                   </span>
-                  <span className="text-xs text-foreground/50 font-medium">
+                  <span className="text-xs text-zinc-400 font-medium">
                     {category.count.toLocaleString()}개
                   </span>
                 </div>
@@ -268,16 +266,14 @@ export default function Home() {
       <section className="container mx-auto px-4 py-12">
         <div className="mb-10 flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-lime-500/80  to-lime-600/80 bg-clip-text text-transparent">
-              인기 상품
-            </h2>
-            <p className="text-foreground/60">
+            <h2 className="text-3xl font-bold mb-2 text-white">인기 상품</h2>
+            <p className="text-zinc-400">
               지금 가장 인기 있는 상품들을 만나보세요
             </p>
           </div>
           <Button
             variant="ghost"
-            className="text-sm font-semibold text-lime-600 hover:text-lime-700 hover:bg-lime-50 rounded-xl"
+            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
           >
             더보기 →
           </Button>
@@ -286,54 +282,54 @@ export default function Home() {
           {products.map((product) => (
             <Card
               key={product.id}
-              className="group overflow-hidden border-2 border-lime-200/50 bg-white/90 backdrop-blur-sm hover:border-lime-300/70 smooth-shadow hover:smooth-shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer rounded-2xl"
+              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer rounded-xl"
             >
-              <div className="relative aspect-square w-full bg-gradient-to-br from-lime-100/50 to-yellow-100/50 overflow-hidden rounded-t-2xl">
+              <div className="relative aspect-square w-full bg-zinc-950 overflow-hidden rounded-t-xl">
                 <img
                   src={product.image}
                   alt={product.title}
                   className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
                 {product.isNew && (
-                  <div className="absolute left-3 top-3 px-3 py-1 rounded-full bg-gradient-to-r from-lime-300/90 via-yellow-300/90 to-lime-400/90 text-white text-xs font-bold smooth-shadow-lg shadow-lime-300/40">
+                  <div className="absolute left-3 top-3 px-3 py-1 rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 text-black text-xs font-bold smooth-shadow-lg shadow-lime-400/30">
                     NEW
                   </div>
                 )}
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute right-3 top-3 h-9 w-9 rounded-full bg-white/95 backdrop-blur-sm hover:bg-white smooth-shadow-lg hover:scale-110 transition-all duration-300 border border-lime-200/50"
+                  className="absolute right-3 top-3 h-9 w-9 rounded-full bg-zinc-900/80 backdrop-blur-sm hover:bg-zinc-800 smooth-shadow-lg hover:scale-110 transition-all duration-300 border border-zinc-700"
                 >
-                  <Heart className="h-4 w-4 text-lime-500 group-hover:fill-lime-500 transition-all" />
+                  <Heart className="h-4 w-4 text-zinc-400 group-hover:fill-lime-400 group-hover:text-lime-400 transition-all" />
                 </Button>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <CardHeader className="pb-2 px-4 pt-4">
-                <CardTitle className="line-clamp-2 text-base font-bold text-foreground group-hover:text-lime-600 transition-colors duration-300">
+                <CardTitle className="line-clamp-2 text-base font-bold text-white group-hover:text-lime-400 transition-colors duration-300">
                   {product.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pb-2 px-4">
-                <p className="text-xl font-bold bg-gradient-to-r from-lime-500/80 via-yellow-500/80 to-lime-500/80 bg-clip-text text-transparent">
+                <p className="text-xl font-bold bg-gradient-to-r from-lime-400 to-yellow-400 bg-clip-text text-transparent">
                   {product.price}
                 </p>
               </CardContent>
-              <CardFooter className="flex items-center justify-between text-xs text-foreground/60 pt-3 border-t border-lime-100 px-4 pb-4">
+              <CardFooter className="flex items-center justify-between text-xs text-zinc-400 pt-3 border-t border-zinc-800 px-4 pb-4">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-lime-500" />
+                  <MapPin className="h-3.5 w-3.5 text-zinc-500" />
                   <span className="font-medium text-xs">
                     {product.location}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5">
-                    <Heart className="h-3.5 w-3.5 fill-lime-400 text-lime-500" />
+                    <Heart className="h-3.5 w-3.5 fill-zinc-600 text-zinc-500" />
                     <span className="font-semibold text-xs">
                       {product.likes}
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-lime-500/70" />
+                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
                     <span className="text-xs">{product.time}</span>
                   </div>
                 </div>
@@ -347,16 +343,14 @@ export default function Home() {
       <section className="container mx-auto px-4 py-12">
         <div className="mb-10 flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-lime-500/80 to-lime-600/80 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-2 text-white">
               커뮤니티 게시판
             </h2>
-            <p className="text-foreground/60">
-              최근 게시글을 확인하고 소통해보세요
-            </p>
+            <p className="text-zinc-400">최근 게시글을 확인하고 소통해보세요</p>
           </div>
           <Button
             variant="ghost"
-            className="text-sm font-semibold text-lime-600 hover:text-lime-700 hover:bg-lime-50 rounded-xl"
+            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
           >
             게시판 보기 →
           </Button>
@@ -420,39 +414,39 @@ export default function Home() {
           ].map((post) => (
             <Card
               key={post.id}
-              className="group overflow-hidden border-2 border-lime-200/50 bg-white/90 backdrop-blur-sm hover:border-lime-300/70 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-2xl"
+              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
             >
               <CardHeader className="pb-3 px-5 pt-5">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-lime-100 text-lime-700 border border-lime-200/50">
+                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-800 text-zinc-300 border border-zinc-700">
                     {post.category}
                   </span>
-                  <ArrowRight className="h-4 w-4 text-lime-500/50 group-hover:text-lime-500 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="h-4 w-4 text-zinc-500 group-hover:text-lime-400 group-hover:translate-x-1 transition-all" />
                 </div>
-                <CardTitle className="line-clamp-2 text-base font-bold text-foreground group-hover:text-lime-600 transition-colors duration-300">
+                <CardTitle className="line-clamp-2 text-base font-bold text-white group-hover:text-lime-400 transition-colors duration-300">
                   {post.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pb-3 px-5">
-                <div className="flex items-center gap-3 text-xs text-foreground/60">
+                <div className="flex items-center gap-3 text-xs text-zinc-400">
                   <div className="flex items-center gap-1.5">
-                    <User className="h-3.5 w-3.5 text-lime-500/70" />
+                    <User className="h-3.5 w-3.5 text-zinc-500" />
                     <span className="font-medium">{post.author}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-lime-500/70" />
+                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
                     <span>{post.time}</span>
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="flex items-center justify-between text-xs text-foreground/60 pt-3 border-t border-lime-100 px-5 pb-5">
+              <CardFooter className="flex items-center justify-between text-xs text-zinc-400 pt-3 border-t border-zinc-800 px-5 pb-5">
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1.5">
-                    <Eye className="h-3.5 w-3.5 text-lime-500/70" />
+                    <Eye className="h-3.5 w-3.5 text-zinc-500" />
                     <span className="font-medium">{post.views}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <MessageSquare className="h-3.5 w-3.5 text-lime-500/70" />
+                    <MessageSquare className="h-3.5 w-3.5 text-zinc-500" />
                     <span className="font-medium">{post.comments}</span>
                   </div>
                 </div>
@@ -466,16 +460,14 @@ export default function Home() {
       <section className="container mx-auto px-4 py-12">
         <div className="mb-10 flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-lime-500/80 to-lime-600/80 bg-clip-text text-transparent">
-              유저 랭킹
-            </h2>
-            <p className="text-foreground/60">
+            <h2 className="text-3xl font-bold mb-2 text-white">유저 랭킹</h2>
+            <p className="text-zinc-400">
               이번 달 가장 활발한 유저들을 확인해보세요
             </p>
           </div>
           <Button
             variant="ghost"
-            className="text-sm font-semibold text-lime-600 hover:text-lime-700 hover:bg-lime-50 rounded-xl"
+            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
           >
             전체 랭킹 보기 →
           </Button>
@@ -539,40 +531,40 @@ export default function Home() {
           ].map((user) => (
             <Card
               key={user.id}
-              className="group overflow-hidden border-2 border-lime-200/50 bg-white/90 backdrop-blur-sm hover:border-lime-300/70 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-2xl"
+              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
             >
               <CardHeader className="pb-3 px-5 pt-5">
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-lime-100 to-yellow-100 text-3xl border-2 border-lime-200/50">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 text-3xl border-2 border-zinc-700">
                       {user.avatar}
                     </div>
                     {user.rank <= 3 && (
-                      <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 via-yellow-400 to-lime-500 smooth-shadow">
+                      <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow">
                         {user.rank === 1 ? (
-                          <Trophy className="h-3.5 w-3.5 text-white" />
+                          <Trophy className="h-3.5 w-3.5 text-black" />
                         ) : user.rank === 2 ? (
-                          <Medal className="h-3.5 w-3.5 text-white" />
+                          <Medal className="h-3.5 w-3.5 text-black" />
                         ) : (
-                          <Star className="h-3.5 w-3.5 text-white" />
+                          <Star className="h-3.5 w-3.5 text-black" />
                         )}
                       </div>
                     )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg font-bold text-foreground">
+                      <span className="text-lg font-bold text-white">
                         {user.name}
                       </span>
                       {user.rank <= 3 && (
-                        <TrendingUp className="h-4 w-4 text-lime-500" />
+                        <TrendingUp className="h-4 w-4 text-lime-400" />
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 border border-lime-200/50">
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">
                         {user.rank}위
                       </span>
-                      <span className="text-xs text-foreground/60">
+                      <span className="text-xs text-zinc-400">
                         {user.score.toLocaleString()}점
                       </span>
                     </div>
@@ -580,26 +572,26 @@ export default function Home() {
                 </div>
               </CardHeader>
               <CardContent className="pb-3 px-5">
-                <div className="flex items-center gap-4 text-xs text-foreground/60">
+                <div className="flex items-center gap-4 text-xs text-zinc-400">
                   <div className="flex items-center gap-1.5">
-                    <ShoppingBag className="h-3.5 w-3.5 text-lime-500/70" />
+                    <ShoppingBag className="h-3.5 w-3.5 text-zinc-500" />
                     <span className="font-medium">거래 {user.trades}회</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Star className="h-3.5 w-3.5 text-lime-500/70" />
+                    <Star className="h-3.5 w-3.5 text-zinc-500" />
                     <span className="font-medium">후기 {user.reviews}개</span>
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="pt-3 border-t border-lime-100 px-5 pb-5">
+              <CardFooter className="pt-3 border-t border-zinc-800 px-5 pb-5">
                 <div className="w-full">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="text-foreground/60">활동 점수</span>
-                    <span className="font-semibold text-lime-600">
+                    <span className="text-zinc-400">활동 점수</span>
+                    <span className="font-semibold text-lime-400">
                       {user.score.toLocaleString()}점
                     </span>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-lime-100/50 overflow-hidden">
+                  <div className="h-2 w-full rounded-full bg-zinc-800 overflow-hidden">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 transition-all duration-500"
                       style={{
@@ -615,18 +607,16 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-lime-200/50 bg-gradient-to-b from-white/80 via-lime-50/30 to-white/80 py-14 mt-20">
+      <footer className="border-t border-zinc-800 bg-zinc-950 py-14 mt-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center gap-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-lime-300/80 via-yellow-300/80 to-lime-400/80 smooth-shadow-lg shadow-lime-300/30">
-                <ShoppingBag className="h-6 w-6 text-white" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow-lg shadow-lime-400/20">
+                <ShoppingBag className="h-6 w-6 text-black" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-lime-500/80 via-yellow-500/80 to-lime-500/80 bg-clip-text text-transparent">
-                골드키위
-              </span>
+              <span className="text-2xl font-bold text-white">골드키위</span>
             </div>
-            <p className="text-sm text-foreground/50 text-center">
+            <p className="text-sm text-zinc-500 text-center">
               © 2024 골드키위. All rights reserved.
             </p>
           </div>

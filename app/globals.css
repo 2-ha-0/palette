@@ -2,26 +2,26 @@
 
 @layer base {
   :root {
-    --background: 75 30% 98%;
-    --foreground: 30 15% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 30 15% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 30 15% 15%;
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
     --primary: 65 80% 50%;
-    --primary-foreground: 30 15% 15%;
-    --secondary: 75 40% 95%;
-    --secondary-foreground: 30 15% 15%;
-    --muted: 75 25% 97%;
-    --muted-foreground: 30 10% 45%;
-    --accent: 45 100% 45%;
-    --accent-foreground: 30 15% 15%;
+    --primary-foreground: 0 0% 3%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 75 30% 90%;
-    --input: 75 30% 94%;
-    --ring: 55 80% 50%;
-    --radius: 1rem;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 65 80% 50%;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -83,15 +83,15 @@
 
 @layer utilities {
   .smooth-shadow {
-    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05),
-      0 4px 16px -4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.3),
+      0 4px 16px -4px rgba(0, 0, 0, 0.2);
   }
   .smooth-shadow-lg {
-    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.08),
-      0 8px 32px -8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.4),
+      0 8px 32px -8px rgba(0, 0, 0, 0.3);
   }
   .smooth-shadow-xl {
-    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.1),
-      0 16px 48px -16px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5),
+      0 16px 48px -16px rgba(0, 0, 0, 0.4);
   }
 }
