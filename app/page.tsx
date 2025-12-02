@@ -24,6 +24,10 @@ import {
   Eye,
   User,
   ArrowRight,
+  Trophy,
+  Medal,
+  Star,
+  TrendingUp,
 } from "lucide-react";
 
 export default function Home() {
@@ -450,6 +454,158 @@ export default function Home() {
                   <div className="flex items-center gap-1.5">
                     <MessageSquare className="h-3.5 w-3.5 text-lime-500/70" />
                     <span className="font-medium">{post.comments}</span>
+                  </div>
+                </div>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* User Ranking */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="mb-10 flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-lime-500/80 to-lime-600/80 bg-clip-text text-transparent">
+              유저 랭킹
+            </h2>
+            <p className="text-foreground/60">
+              이번 달 가장 활발한 유저들을 확인해보세요
+            </p>
+          </div>
+          <Button
+            variant="ghost"
+            className="text-sm font-semibold text-lime-600 hover:text-lime-700 hover:bg-lime-50 rounded-xl"
+          >
+            전체 랭킹 보기 →
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            {
+              id: 1,
+              rank: 1,
+              name: "김중고왕",
+              score: 1250,
+              trades: 45,
+              reviews: 32,
+              avatar: "👑",
+            },
+            {
+              id: 2,
+              rank: 2,
+              name: "이거래왕",
+              score: 1120,
+              trades: 38,
+              reviews: 28,
+              avatar: "⭐",
+            },
+            {
+              id: 3,
+              rank: 3,
+              name: "박신뢰",
+              score: 980,
+              trades: 35,
+              reviews: 25,
+              avatar: "🏆",
+            },
+            {
+              id: 4,
+              rank: 4,
+              name: "최안전거래",
+              score: 875,
+              trades: 32,
+              reviews: 22,
+              avatar: "💎",
+            },
+            {
+              id: 5,
+              rank: 5,
+              name: "정우수판매자",
+              score: 820,
+              trades: 28,
+              reviews: 20,
+              avatar: "✨",
+            },
+            {
+              id: 6,
+              rank: 6,
+              name: "한빠른거래",
+              score: 765,
+              trades: 25,
+              reviews: 18,
+              avatar: "🚀",
+            },
+          ].map((user) => (
+            <Card
+              key={user.id}
+              className="group overflow-hidden border-2 border-lime-200/50 bg-white/90 backdrop-blur-sm hover:border-lime-300/70 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-2xl"
+            >
+              <CardHeader className="pb-3 px-5 pt-5">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-lime-100 to-yellow-100 text-3xl border-2 border-lime-200/50">
+                      {user.avatar}
+                    </div>
+                    {user.rank <= 3 && (
+                      <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 via-yellow-400 to-lime-500 smooth-shadow">
+                        {user.rank === 1 ? (
+                          <Trophy className="h-3.5 w-3.5 text-white" />
+                        ) : user.rank === 2 ? (
+                          <Medal className="h-3.5 w-3.5 text-white" />
+                        ) : (
+                          <Star className="h-3.5 w-3.5 text-white" />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-lg font-bold text-foreground">
+                        {user.name}
+                      </span>
+                      {user.rank <= 3 && (
+                        <TrendingUp className="h-4 w-4 text-lime-500" />
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 border border-lime-200/50">
+                        {user.rank}위
+                      </span>
+                      <span className="text-xs text-foreground/60">
+                        {user.score.toLocaleString()}점
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="pb-3 px-5">
+                <div className="flex items-center gap-4 text-xs text-foreground/60">
+                  <div className="flex items-center gap-1.5">
+                    <ShoppingBag className="h-3.5 w-3.5 text-lime-500/70" />
+                    <span className="font-medium">거래 {user.trades}회</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Star className="h-3.5 w-3.5 text-lime-500/70" />
+                    <span className="font-medium">후기 {user.reviews}개</span>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="pt-3 border-t border-lime-100 px-5 pb-5">
+                <div className="w-full">
+                  <div className="flex items-center justify-between text-xs mb-1">
+                    <span className="text-foreground/60">활동 점수</span>
+                    <span className="font-semibold text-lime-600">
+                      {user.score.toLocaleString()}점
+                    </span>
+                  </div>
+                  <div className="h-2 w-full rounded-full bg-lime-100/50 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 transition-all duration-500"
+                      style={{
+                        width: `${(user.score / 1250) * 100}%`,
+                      }}
+                    />
                   </div>
                 </div>
               </CardFooter>
