@@ -2,26 +2,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 75 30% 98%;
+    --foreground: 30 15% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 30 15% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 30 15% 15%;
+    --primary: 65 80% 50%;
+    --primary-foreground: 30 15% 15%;
+    --secondary: 75 40% 95%;
+    --secondary-foreground: 30 15% 15%;
+    --muted: 75 25% 97%;
+    --muted-foreground: 30 10% 45%;
+    --accent: 45 100% 45%;
+    --accent-foreground: 30 15% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    --border: 75 30% 90%;
+    --input: 75 30% 94%;
+    --ring: 55 80% 50%;
+    --radius: 1rem;
   }
 
   .dark {
@@ -78,5 +78,20 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  }
+}
+
+@layer utilities {
+  .smooth-shadow {
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05),
+      0 4px 16px -4px rgba(0, 0, 0, 0.05);
+  }
+  .smooth-shadow-lg {
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.08),
+      0 8px 32px -8px rgba(0, 0, 0, 0.06);
+  }
+  .smooth-shadow-xl {
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.1),
+      0 16px 48px -16px rgba(0, 0, 0, 0.08);
   }
 }
