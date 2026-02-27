@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "중고마켓 - 중고거래 사이트",
-  description: "안전하고 편리한 중고거래 플랫폼",
+  title: "HR Agent - AI 채용 솔루션",
+  description: "AI 기반 스마트 채용 관리 시스템. 지원자 관리, 면접 질문 생성, 채용 분석을 한 곳에서.",
 };
 
 export default function RootLayout({

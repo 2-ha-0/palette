@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,621 +8,1225 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
+  LayoutDashboard,
+  Users,
+  Briefcase,
+  Bot,
+  Settings,
   Search,
-  Heart,
-  MapPin,
-  Clock,
-  ShoppingBag,
-  Laptop,
-  Shirt,
-  Sofa,
-  BookOpen,
-  Dumbbell,
+  Bell,
+  ChevronDown,
+  Plus,
   MoreHorizontal,
-  Sparkles,
-  MessageSquare,
-  Eye,
-  User,
-  ArrowRight,
-  Trophy,
-  Medal,
-  Star,
   TrendingUp,
+  TrendingDown,
+  UserCheck,
+  FileText,
+  Calendar,
+  Clock,
+  Star,
+  Send,
+  Filter,
+  ArrowUpRight,
+  Eye,
+  MapPin,
+  GraduationCap,
+  Mail,
+  Phone,
+  CheckCircle2,
+  XCircle,
+  MessageSquare,
+  Building2,
+  CircleDot,
+  ChevronRight,
+  Sparkles,
 } from "lucide-react";
 
+type NavItem = "dashboard" | "jobs" | "applicants" | "ai" | "settings";
+
 export default function Home() {
-  const categories = [
+  const [activeNav, setActiveNav] = useState<NavItem>("dashboard");
+  const [chatMessages, setChatMessages] = useState([
     {
-      name: "전자제품",
-      count: 1234,
-      icon: Laptop,
-      color: "from-blue-400 to-cyan-400",
+      role: "ai" as const,
+      content:
+        "안녕하세요! HR Agent AI 어시스턴트입니다. 채용과 관련된 질문이 있으시면 편하게 물어보세요. 지원자 분석, 면접 질문 생성, 채용 공고 작성 등을 도와드릴 수 있습니다.",
+    },
+  ]);
+  const [chatInput, setChatInput] = useState("");
+
+  const navItems = [
+    { id: "dashboard" as NavItem, label: "대시보드", icon: LayoutDashboard },
+    { id: "jobs" as NavItem, label: "채용 공고", icon: Briefcase },
+    { id: "applicants" as NavItem, label: "지원자 관리", icon: Users },
+    { id: "ai" as NavItem, label: "AI 어시스턴트", icon: Bot },
+    { id: "settings" as NavItem, label: "설정", icon: Settings },
+  ];
+
+  const statsCards = [
+    {
+      title: "총 지원자",
+      value: "2,847",
+      change: "+12.5%",
+      trend: "up" as const,
+      icon: Users,
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/10",
     },
     {
-      name: "의류",
-      count: 856,
-      icon: Shirt,
-      color: "from-pink-400 to-rose-400",
+      title: "진행중 채용",
+      value: "24",
+      change: "+3",
+      trend: "up" as const,
+      icon: Briefcase,
+      color: "text-purple-400",
+      bgColor: "bg-purple-500/10",
     },
     {
-      name: "가구",
-      count: 432,
-      icon: Sofa,
-      color: "from-orange-400 to-amber-400",
+      title: "면접 예정",
+      value: "156",
+      change: "+8.3%",
+      trend: "up" as const,
+      icon: Calendar,
+      color: "text-emerald-400",
+      bgColor: "bg-emerald-500/10",
     },
     {
-      name: "도서",
-      count: 321,
-      icon: BookOpen,
-      color: "from-purple-400 to-violet-400",
-    },
-    {
-      name: "스포츠",
-      count: 567,
-      icon: Dumbbell,
-      color: "from-red-400 to-orange-400",
-    },
-    {
-      name: "기타",
-      count: 890,
-      icon: MoreHorizontal,
-      color: "from-gray-400 to-slate-400",
+      title: "채용 완료",
+      value: "89",
+      change: "-2.1%",
+      trend: "down" as const,
+      icon: UserCheck,
+      color: "text-amber-400",
+      bgColor: "bg-amber-500/10",
     },
   ];
 
-  const products = [
+  const pipeline = [
+    { stage: "서류 접수", count: 1240, color: "bg-blue-500" },
+    { stage: "서류 검토", count: 856, color: "bg-indigo-500" },
+    { stage: "1차 면접", count: 324, color: "bg-purple-500" },
+    { stage: "2차 면접", count: 156, color: "bg-pink-500" },
+    { stage: "최종 합격", count: 89, color: "bg-emerald-500" },
+  ];
+
+  const recentApplicants = [
     {
       id: 1,
-      title: "아이폰 14 Pro Max",
-      price: "850,000원",
-      location: "서울시 강남구",
-      time: "2시간 전",
-      image: "/images/products/product1.jpg",
-      likes: 23,
-      isNew: true,
+      name: "김민서",
+      position: "프론트엔드 개발자",
+      status: "서류 검토",
+      statusColor: "bg-blue-500/20 text-blue-400",
+      date: "2024-01-15",
+      score: 92,
+      avatar: "김",
     },
     {
       id: 2,
-      title: "나이키 운동화",
-      price: "80,000원",
-      location: "서울시 마포구",
-      time: "5시간 전",
-      image: "/images/products/product2.jpg",
-      likes: 15,
-      isNew: false,
+      name: "이준혁",
+      position: "백엔드 개발자",
+      status: "1차 면접",
+      statusColor: "bg-purple-500/20 text-purple-400",
+      date: "2024-01-14",
+      score: 88,
+      avatar: "이",
     },
     {
       id: 3,
-      title: "맥북 프로 13인치",
-      price: "1,200,000원",
-      location: "서울시 서초구",
-      time: "1일 전",
-      image: "/images/products/product3.jpg",
-      likes: 42,
-      isNew: true,
+      name: "박서연",
+      position: "UX 디자이너",
+      status: "2차 면접",
+      statusColor: "bg-pink-500/20 text-pink-400",
+      date: "2024-01-13",
+      score: 95,
+      avatar: "박",
     },
     {
       id: 4,
-      title: "에어팟 프로 2세대",
-      price: "200,000원",
-      location: "서울시 송파구",
-      time: "3시간 전",
-      image: "/images/products/product4.jpg",
-      likes: 31,
-      isNew: false,
+      name: "정태현",
+      position: "데이터 엔지니어",
+      status: "서류 접수",
+      statusColor: "bg-zinc-500/20 text-zinc-400",
+      date: "2024-01-15",
+      score: 78,
+      avatar: "정",
     },
     {
       id: 5,
-      title: "책상 의자",
-      price: "150,000원",
-      location: "서울시 용산구",
-      time: "6시간 전",
-      image: "/images/products/product5.jpg",
-      likes: 8,
-      isNew: false,
-    },
-    {
-      id: 6,
-      title: "자전거",
-      price: "300,000원",
-      location: "서울시 종로구",
-      time: "1일 전",
-      image: "/images/products/product6.jpg",
-      likes: 19,
-      isNew: true,
-    },
-    {
-      id: 7,
-      title: "갤럭시 워치",
-      price: "250,000원",
-      location: "서울시 영등포구",
-      time: "4시간 전",
-      image: "/images/products/product2.jpg",
-      likes: 27,
-      isNew: true,
-    },
-    {
-      id: 8,
-      title: "아이패드 에어",
-      price: "750,000원",
-      location: "서울시 강동구",
-      time: "1일 전",
-      image: "/images/products/product3.jpg",
-      likes: 35,
-      isNew: false,
+      name: "최유나",
+      position: "프로덕트 매니저",
+      status: "최종 합격",
+      statusColor: "bg-emerald-500/20 text-emerald-400",
+      date: "2024-01-12",
+      score: 97,
+      avatar: "최",
     },
   ];
 
+  const jobPostings = [
+    {
+      id: 1,
+      title: "시니어 프론트엔드 개발자",
+      department: "개발팀",
+      location: "서울 강남구",
+      type: "정규직",
+      applicants: 145,
+      deadline: "2024-02-15",
+      status: "모집중",
+      statusColor: "bg-emerald-500/20 text-emerald-400",
+    },
+    {
+      id: 2,
+      title: "백엔드 개발자",
+      department: "개발팀",
+      location: "서울 강남구",
+      type: "정규직",
+      applicants: 203,
+      deadline: "2024-02-20",
+      status: "모집중",
+      statusColor: "bg-emerald-500/20 text-emerald-400",
+    },
+    {
+      id: 3,
+      title: "UX/UI 디자이너",
+      department: "디자인팀",
+      location: "서울 성수동",
+      type: "정규직",
+      applicants: 89,
+      deadline: "2024-02-10",
+      status: "마감임박",
+      statusColor: "bg-amber-500/20 text-amber-400",
+    },
+    {
+      id: 4,
+      title: "데이터 엔지니어",
+      department: "데이터팀",
+      location: "서울 판교",
+      type: "정규직",
+      applicants: 67,
+      deadline: "2024-02-25",
+      status: "모집중",
+      statusColor: "bg-emerald-500/20 text-emerald-400",
+    },
+    {
+      id: 5,
+      title: "프로덕트 매니저",
+      department: "프로덕트팀",
+      location: "서울 강남구",
+      type: "정규직",
+      applicants: 112,
+      deadline: "2024-01-31",
+      status: "마감",
+      statusColor: "bg-red-500/20 text-red-400",
+    },
+    {
+      id: 6,
+      title: "마케팅 매니저",
+      department: "마케팅팀",
+      location: "서울 강남구",
+      type: "계약직",
+      applicants: 56,
+      deadline: "2024-03-01",
+      status: "모집중",
+      statusColor: "bg-emerald-500/20 text-emerald-400",
+    },
+  ];
+
+  const allApplicants = [
+    {
+      id: 1,
+      name: "김민서",
+      email: "minseok@email.com",
+      phone: "010-1234-5678",
+      position: "프론트엔드 개발자",
+      experience: "5년",
+      education: "서울대학교 컴퓨터공학",
+      status: "서류 검토",
+      statusColor: "bg-blue-500/20 text-blue-400",
+      score: 92,
+      appliedDate: "2024-01-15",
+      tags: ["React", "TypeScript", "Next.js"],
+    },
+    {
+      id: 2,
+      name: "이준혁",
+      email: "junhyuk@email.com",
+      phone: "010-2345-6789",
+      position: "백엔드 개발자",
+      experience: "7년",
+      education: "KAIST 전산학",
+      status: "1차 면접",
+      statusColor: "bg-purple-500/20 text-purple-400",
+      score: 88,
+      appliedDate: "2024-01-14",
+      tags: ["Java", "Spring", "AWS"],
+    },
+    {
+      id: 3,
+      name: "박서연",
+      email: "seoyeon@email.com",
+      phone: "010-3456-7890",
+      position: "UX 디자이너",
+      experience: "4년",
+      education: "홍익대학교 시각디자인",
+      status: "2차 면접",
+      statusColor: "bg-pink-500/20 text-pink-400",
+      score: 95,
+      appliedDate: "2024-01-13",
+      tags: ["Figma", "User Research", "Design System"],
+    },
+    {
+      id: 4,
+      name: "정태현",
+      email: "taehyun@email.com",
+      phone: "010-4567-8901",
+      position: "데이터 엔지니어",
+      experience: "3년",
+      education: "연세대학교 데이터사이언스",
+      status: "서류 접수",
+      statusColor: "bg-zinc-500/20 text-zinc-400",
+      score: 78,
+      appliedDate: "2024-01-15",
+      tags: ["Python", "Spark", "Airflow"],
+    },
+    {
+      id: 5,
+      name: "최유나",
+      email: "yuna@email.com",
+      phone: "010-5678-9012",
+      position: "프로덕트 매니저",
+      experience: "6년",
+      education: "고려대학교 경영학",
+      status: "최종 합격",
+      statusColor: "bg-emerald-500/20 text-emerald-400",
+      score: 97,
+      appliedDate: "2024-01-12",
+      tags: ["전략", "데이터분석", "리더십"],
+    },
+    {
+      id: 6,
+      name: "한지호",
+      email: "jiho@email.com",
+      phone: "010-6789-0123",
+      position: "프론트엔드 개발자",
+      experience: "2년",
+      education: "성균관대학교 소프트웨어",
+      status: "불합격",
+      statusColor: "bg-red-500/20 text-red-400",
+      score: 62,
+      appliedDate: "2024-01-11",
+      tags: ["Vue.js", "JavaScript", "CSS"],
+    },
+    {
+      id: 7,
+      name: "윤서진",
+      email: "seojin@email.com",
+      phone: "010-7890-1234",
+      position: "백엔드 개발자",
+      experience: "4년",
+      education: "포항공대 컴퓨터공학",
+      status: "1차 면접",
+      statusColor: "bg-purple-500/20 text-purple-400",
+      score: 85,
+      appliedDate: "2024-01-14",
+      tags: ["Python", "Django", "PostgreSQL"],
+    },
+    {
+      id: 8,
+      name: "송하은",
+      email: "haeun@email.com",
+      phone: "010-8901-2345",
+      position: "마케팅 매니저",
+      experience: "5년",
+      education: "서강대학교 경영학",
+      status: "서류 검토",
+      statusColor: "bg-blue-500/20 text-blue-400",
+      score: 83,
+      appliedDate: "2024-01-15",
+      tags: ["디지털마케팅", "GA", "SEO"],
+    },
+  ];
+
+  const handleSendMessage = () => {
+    if (!chatInput.trim()) return;
+    const userMessage = chatInput;
+    setChatMessages((prev) => [
+      ...prev,
+      { role: "user" as const, content: userMessage },
+    ]);
+    setChatInput("");
+
+    setTimeout(() => {
+      let aiResponse = "";
+      if (
+        userMessage.includes("면접") &&
+        userMessage.includes("질문")
+      ) {
+        aiResponse = `프론트엔드 개발자 면접에 적합한 질문들을 생성했습니다:
+
+1. **기술 역량**
+   - React의 Virtual DOM 동작 원리를 설명해주세요.
+   - TypeScript에서 제네릭을 활용한 경험이 있나요?
+   - 웹 성능 최적화를 위해 어떤 방법들을 사용해보셨나요?
+
+2. **프로젝트 경험**
+   - 가장 도전적이었던 프로젝트에 대해 설명해주세요.
+   - 팀 내 코드 리뷰 프로세스는 어떻게 진행하셨나요?
+
+3. **문제 해결**
+   - 프로덕션에서 발생한 버그를 해결한 경험을 공유해주세요.
+   - 기술 부채를 관리한 경험이 있으신가요?`;
+      } else if (
+        userMessage.includes("공고") &&
+        userMessage.includes("작성")
+      ) {
+        aiResponse = `채용 공고를 작성해드리겠습니다!
+
+**[시니어 프론트엔드 개발자 채용]**
+
+📌 **포지션:** 시니어 프론트엔드 개발자
+📌 **팀:** 서비스 개발팀
+📌 **근무지:** 서울 강남구
+
+**주요 업무:**
+• React/Next.js 기반 웹 서비스 개발
+• 디자인 시스템 구축 및 운영
+• 코드 리뷰 및 주니어 멘토링
+
+**자격 요건:**
+• 프론트엔드 개발 경력 5년 이상
+• React, TypeScript 실무 경험 필수
+• 웹 성능 최적화 경험
+
+**우대 사항:**
+• 대규모 트래픽 서비스 경험
+• 오픈소스 기여 경험
+
+공고 내용을 수정하시겠어요?`;
+      } else if (
+        userMessage.includes("분석") ||
+        userMessage.includes("지원자")
+      ) {
+        aiResponse = `현재 지원자 현황을 분석해드리겠습니다.
+
+📊 **이번 달 주요 지표:**
+• 총 지원자: 2,847명 (전월 대비 +12.5%)
+• 서류 합격률: 69%
+• 면접 합격률: 45%
+• 평균 채용 소요일: 23일
+
+🏆 **우수 지원자 TOP 3:**
+1. 최유나 (PM) - AI 점수 97점
+2. 박서연 (UX) - AI 점수 95점
+3. 김민서 (FE) - AI 점수 92점
+
+💡 **AI 추천:** 프론트엔드 개발자 포지션에 김민서님의 기술 스택이 매우 적합합니다. 면접 진행을 추천드립니다.`;
+      } else {
+        aiResponse = `네, 말씀하신 내용을 이해했습니다. HR Agent AI가 도와드릴 수 있는 기능들입니다:
+
+• 🤖 **면접 질문 생성** - "프론트엔드 면접 질문 만들어줘"
+• 📝 **채용 공고 작성** - "개발자 채용 공고 작성해줘"
+• 📊 **지원자 분석** - "이번 달 지원자 분석해줘"
+• 📋 **이력서 요약** - 지원자 이력서 핵심 내용 요약
+• 💬 **커뮤니케이션** - 합격/불합격 메일 템플릿 생성
+
+원하시는 기능을 말씀해주세요!`;
+      }
+      setChatMessages((prev) => [
+        ...prev,
+        { role: "ai" as const, content: aiResponse },
+      ]);
+    }, 1000);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-zinc-950/60 supports-[backdrop-filter]:backdrop-blur-2xl">
-        <div className="container mx-auto px-4 py-5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow-lg shadow-lime-400/20">
-                <ShoppingBag className="h-6 w-6 text-black" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white">골드키위</h1>
-                <p className="text-xs text-zinc-400 font-medium">
-                  프리미엄 중고거래
-                </p>
-              </div>
+    <div className="flex h-screen bg-zinc-950 text-white overflow-hidden">
+      {/* Sidebar */}
+      <aside className="w-64 flex-shrink-0 border-r border-zinc-800 bg-zinc-900/50 flex flex-col">
+        <div className="p-5 border-b border-zinc-800">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600">
+              <Sparkles className="h-5 w-5 text-white" />
             </div>
-            <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                className="font-medium text-zinc-300 hover:text-white hover:bg-zinc-800"
-              >
-                로그인
-              </Button>
-              <Button className="bg-gradient-to-r from-lime-400 to-yellow-400 text-black hover:from-lime-500 hover:to-yellow-500 smooth-shadow-lg shadow-lime-400/30 hover:shadow-lime-400/50 transition-all duration-300 font-semibold">
-                회원가입
-              </Button>
+            <div>
+              <h1 className="text-lg font-bold text-white">HR Agent</h1>
+              <p className="text-[11px] text-zinc-400">AI 채용 솔루션</p>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center space-y-6 mb-12">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 text-sm font-semibold smooth-shadow backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 text-lime-400" />
-            <span>새로운 상품이 매일 업데이트됩니다</span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white">
-            원하는 상품을
-            <br />
-            <span className="bg-gradient-to-r from-lime-400 via-yellow-400 to-lime-400 bg-clip-text text-transparent">
-              쉽고 빠르게
-            </span>
-            <br />
-            찾아보세요
-          </h2>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            프리미엄 중고거래 플랫폼에서 최고의 상품을 만나보세요
-          </p>
-        </div>
-
-        {/* Search Bar */}
-        <div className="max-w-3xl mx-auto">
-          <div className="flex gap-3">
-            <div className="relative flex-1 group">
-              <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400 group-focus-within:text-lime-400 transition-colors duration-300" />
-              <Input
-                type="search"
-                placeholder="찾고 싶은 상품을 검색해보세요..."
-                className="pl-14 h-16 text-base border-2 border-zinc-800 focus:border-lime-400/50 focus:ring-2 focus:ring-lime-400/20 rounded-xl bg-zinc-900/50 backdrop-blur-sm smooth-shadow hover:shadow-md transition-all duration-300 text-white placeholder:text-zinc-500"
-              />
-            </div>
-            <Button
-              size="lg"
-              className="h-16 px-10 bg-gradient-to-r from-lime-400 to-yellow-400 text-black hover:from-lime-500 hover:to-yellow-500 smooth-shadow-lg shadow-lime-400/30 hover:shadow-lime-400/50 rounded-xl transition-all duration-300 font-semibold"
-            >
-              검색
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="container mx-auto px-4 py-10">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2 text-white">카테고리</h2>
-          <p className="text-zinc-400">원하는 카테고리를 선택하세요</p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
-          {categories.map((category) => {
-            const Icon = category.icon;
+        <nav className="flex-1 p-3 space-y-1">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeNav === item.id;
             return (
               <button
-                key={category.name}
-                className="group relative flex flex-col items-center gap-4 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 hover:bg-zinc-900 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-500"
+                key={item.id}
+                onClick={() => setActiveNav(item.id)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
+                    ? "bg-violet-500/15 text-violet-300 border border-violet-500/20"
+                    : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50"
+                  }`}
               >
-                <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${category.color} smooth-shadow-lg group-hover:scale-110 transition-all duration-500`}
-                >
-                  <Icon className="h-8 w-8 text-white" />
-                </div>
-                <div className="text-center">
-                  <span className="block font-semibold text-base mb-1 text-white group-hover:text-lime-400 transition-colors">
-                    {category.name}
-                  </span>
-                  <span className="text-xs text-zinc-400 font-medium">
-                    {category.count.toLocaleString()}개
-                  </span>
-                </div>
+                <Icon className={`h-[18px] w-[18px] ${isActive ? "text-violet-400" : ""}`} />
+                {item.label}
               </button>
             );
           })}
-        </div>
-      </section>
+        </nav>
 
-      {/* Products Grid */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold mb-2 text-white">인기 상품</h2>
-            <p className="text-zinc-400">
-              지금 가장 인기 있는 상품들을 만나보세요
-            </p>
+        <div className="p-3 border-t border-zinc-800">
+          <div className="flex items-center gap-3 px-3 py-2">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-sm font-bold">
+              관
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-white truncate">관리자</p>
+              <p className="text-xs text-zinc-500 truncate">admin@company.com</p>
+            </div>
+            <ChevronDown className="h-4 w-4 text-zinc-500" />
           </div>
-          <Button
-            variant="ghost"
-            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
-          >
-            더보기 →
-          </Button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {products.map((product) => (
-            <Card
-              key={product.id}
-              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer rounded-xl"
-            >
-              <div className="relative aspect-square w-full bg-zinc-950 overflow-hidden rounded-t-xl">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                {product.isNew && (
-                  <div className="absolute left-3 top-3 px-3 py-1 rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 text-black text-xs font-bold smooth-shadow-lg shadow-lime-400/30">
-                    NEW
-                  </div>
-                )}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-3 top-3 h-9 w-9 rounded-full bg-zinc-900/80 backdrop-blur-sm hover:bg-zinc-800 smooth-shadow-lg hover:scale-110 transition-all duration-300 border border-zinc-700"
-                >
-                  <Heart className="h-4 w-4 text-zinc-400 group-hover:fill-lime-400 group-hover:text-lime-400 transition-all" />
-                </Button>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-              <CardHeader className="pb-2 px-4 pt-4">
-                <CardTitle className="line-clamp-2 text-base font-bold text-white group-hover:text-lime-400 transition-colors duration-300">
-                  {product.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pb-2 px-4">
-                <p className="text-xl font-bold bg-gradient-to-r from-lime-400 to-yellow-400 bg-clip-text text-transparent">
-                  {product.price}
-                </p>
-              </CardContent>
-              <CardFooter className="flex items-center justify-between text-xs text-zinc-400 pt-3 border-t border-zinc-800 px-4 pb-4">
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-zinc-500" />
-                  <span className="font-medium text-xs">
-                    {product.location}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <Heart className="h-3.5 w-3.5 fill-zinc-600 text-zinc-500" />
-                    <span className="font-semibold text-xs">
-                      {product.likes}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="text-xs">{product.time}</span>
-                  </div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section>
+      </aside>
 
-      {/* Community Board Preview */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold mb-2 text-white">
-              커뮤니티 게시판
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col overflow-hidden">
+        {/* Top Bar */}
+        <header className="h-16 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm flex items-center justify-between px-6 flex-shrink-0">
+          <div className="flex items-center gap-4">
+            <h2 className="text-lg font-semibold text-white">
+              {navItems.find((n) => n.id === activeNav)?.label}
             </h2>
-            <p className="text-zinc-400">최근 게시글을 확인하고 소통해보세요</p>
           </div>
-          <Button
-            variant="ghost"
-            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
-          >
-            게시판 보기 →
-          </Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            {
-              id: 1,
-              title: "아이폰 15 구매 후기 공유합니다!",
-              author: "김철수",
-              views: 234,
-              comments: 12,
-              time: "2시간 전",
-              category: "후기",
-            },
-            {
-              id: 2,
-              title: "중고거래 시 주의사항 알려드려요",
-              author: "이영희",
-              views: 567,
-              comments: 28,
-              time: "5시간 전",
-              category: "정보",
-            },
-            {
-              id: 3,
-              title: "이번 주말에 벼룩시장 열립니다",
-              author: "박민수",
-              views: 189,
-              comments: 5,
-              time: "1일 전",
-              category: "이벤트",
-            },
-            {
-              id: 4,
-              title: "맥북 프로 추천해주세요",
-              author: "최지영",
-              views: 412,
-              comments: 19,
-              time: "3시간 전",
-              category: "질문",
-            },
-            {
-              id: 5,
-              title: "신뢰할 수 있는 판매자 추천받아요",
-              author: "정대현",
-              views: 678,
-              comments: 34,
-              time: "6시간 전",
-              category: "질문",
-            },
-            {
-              id: 6,
-              title: "거래 완료했습니다! 감사합니다",
-              author: "한소희",
-              views: 123,
-              comments: 8,
-              time: "1일 전",
-              category: "후기",
-            },
-          ].map((post) => (
-            <Card
-              key={post.id}
-              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+              <Input
+                placeholder="검색..."
+                className="w-64 pl-9 h-9 bg-zinc-900 border-zinc-800 text-sm rounded-lg focus:border-violet-500/50 focus:ring-violet-500/20 text-white placeholder:text-zinc-500"
+              />
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative text-zinc-400 hover:text-white hover:bg-zinc-800"
             >
-              <CardHeader className="pb-3 px-5 pt-5">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-800 text-zinc-300 border border-zinc-700">
-                    {post.category}
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-zinc-500 group-hover:text-lime-400 group-hover:translate-x-1 transition-all" />
-                </div>
-                <CardTitle className="line-clamp-2 text-base font-bold text-white group-hover:text-lime-400 transition-colors duration-300">
-                  {post.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pb-3 px-5">
-                <div className="flex items-center gap-3 text-xs text-zinc-400">
-                  <div className="flex items-center gap-1.5">
-                    <User className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">{post.author}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
-                    <span>{post.time}</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex items-center justify-between text-xs text-zinc-400 pt-3 border-t border-zinc-800 px-5 pb-5">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1.5">
-                    <Eye className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">{post.views}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <MessageSquare className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">{post.comments}</span>
-                  </div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section>
+              <Bell className="h-[18px] w-[18px]" />
+              <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-violet-500" />
+            </Button>
+          </div>
+        </header>
 
-      {/* User Ranking */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold mb-2 text-white">유저 랭킹</h2>
-            <p className="text-zinc-400">
-              이번 달 가장 활발한 유저들을 확인해보세요
-            </p>
-          </div>
-          <Button
-            variant="ghost"
-            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
-          >
-            전체 랭킹 보기 →
-          </Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            {
-              id: 1,
-              rank: 1,
-              name: "김중고왕",
-              score: 1250,
-              trades: 45,
-              reviews: 32,
-              avatar: "👑",
-            },
-            {
-              id: 2,
-              rank: 2,
-              name: "이거래왕",
-              score: 1120,
-              trades: 38,
-              reviews: 28,
-              avatar: "⭐",
-            },
-            {
-              id: 3,
-              rank: 3,
-              name: "박신뢰",
-              score: 980,
-              trades: 35,
-              reviews: 25,
-              avatar: "🏆",
-            },
-            {
-              id: 4,
-              rank: 4,
-              name: "최안전거래",
-              score: 875,
-              trades: 32,
-              reviews: 22,
-              avatar: "💎",
-            },
-            {
-              id: 5,
-              rank: 5,
-              name: "정우수판매자",
-              score: 820,
-              trades: 28,
-              reviews: 20,
-              avatar: "✨",
-            },
-            {
-              id: 6,
-              rank: 6,
-              name: "한빠른거래",
-              score: 765,
-              trades: 25,
-              reviews: 18,
-              avatar: "🚀",
-            },
-          ].map((user) => (
-            <Card
-              key={user.id}
-              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
-            >
-              <CardHeader className="pb-3 px-5 pt-5">
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 text-3xl border-2 border-zinc-700">
-                      {user.avatar}
-                    </div>
-                    {user.rank <= 3 && (
-                      <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow">
-                        {user.rank === 1 ? (
-                          <Trophy className="h-3.5 w-3.5 text-black" />
-                        ) : user.rank === 2 ? (
-                          <Medal className="h-3.5 w-3.5 text-black" />
-                        ) : (
-                          <Star className="h-3.5 w-3.5 text-black" />
-                        )}
+        {/* Content Area */}
+        <div className="flex-1 overflow-y-auto p-6">
+          {/* ===== DASHBOARD VIEW ===== */}
+          {activeNav === "dashboard" && (
+            <div className="space-y-6">
+              {/* Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {statsCards.map((stat, i) => {
+                  const Icon = stat.icon;
+                  return (
+                    <Card
+                      key={i}
+                      className="bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 transition-colors"
+                    >
+                      <CardContent className="p-5">
+                        <div className="flex items-center justify-between mb-3">
+                          <div
+                            className={`h-10 w-10 rounded-lg ${stat.bgColor} flex items-center justify-center`}
+                          >
+                            <Icon className={`h-5 w-5 ${stat.color}`} />
+                          </div>
+                          <div
+                            className={`flex items-center gap-1 text-xs font-medium ${stat.trend === "up"
+                                ? "text-emerald-400"
+                                : "text-red-400"
+                              }`}
+                          >
+                            {stat.trend === "up" ? (
+                              <TrendingUp className="h-3 w-3" />
+                            ) : (
+                              <TrendingDown className="h-3 w-3" />
+                            )}
+                            {stat.change}
+                          </div>
+                        </div>
+                        <div className="text-2xl font-bold text-white">
+                          {stat.value}
+                        </div>
+                        <div className="text-xs text-zinc-500 mt-1">
+                          {stat.title}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-6">
+                {/* Pipeline */}
+                <Card className="lg:col-span-2 bg-zinc-900/50 border-zinc-800">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="text-base font-semibold text-white">
+                          채용 파이프라인
+                        </CardTitle>
+                        <CardDescription className="text-zinc-500">
+                          현재 진행중인 채용 현황
+                        </CardDescription>
                       </div>
-                    )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-zinc-400 hover:text-white text-xs"
+                      >
+                        자세히 보기 <ChevronRight className="h-3 w-3 ml-1" />
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {pipeline.map((stage, i) => (
+                        <div key={i} className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-zinc-300 font-medium">
+                              {stage.stage}
+                            </span>
+                            <span className="text-zinc-400 font-semibold">
+                              {stage.count}명
+                            </span>
+                          </div>
+                          <div className="h-2.5 bg-zinc-800 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full rounded-full ${stage.color} transition-all duration-700`}
+                              style={{
+                                width: `${(stage.count / 1240) * 100}%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Upcoming Interviews */}
+                <Card className="bg-zinc-900/50 border-zinc-800">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-base font-semibold text-white">
+                      오늘의 일정
+                    </CardTitle>
+                    <CardDescription className="text-zinc-500">
+                      예정된 면접 및 미팅
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {[
+                        {
+                          time: "10:00",
+                          name: "이준혁",
+                          type: "1차 기술면접",
+                          color: "border-purple-500",
+                        },
+                        {
+                          time: "14:00",
+                          name: "박서연",
+                          type: "2차 임원면접",
+                          color: "border-pink-500",
+                        },
+                        {
+                          time: "15:30",
+                          name: "윤서진",
+                          type: "1차 기술면접",
+                          color: "border-purple-500",
+                        },
+                        {
+                          time: "16:30",
+                          name: "채용 회의",
+                          type: "주간 리뷰",
+                          color: "border-amber-500",
+                        },
+                      ].map((item, i) => (
+                        <div
+                          key={i}
+                          className={`flex items-center gap-3 p-3 rounded-lg bg-zinc-800/50 border-l-2 ${item.color}`}
+                        >
+                          <div className="text-center min-w-[40px]">
+                            <div className="text-sm font-bold text-white">
+                              {item.time}
+                            </div>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-white truncate">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-zinc-500">{item.type}</p>
+                          </div>
+                          <ChevronRight className="h-4 w-4 text-zinc-600" />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Recent Applicants */}
+              <Card className="bg-zinc-900/50 border-zinc-800">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="text-base font-semibold text-white">
+                        최근 지원자
+                      </CardTitle>
+                      <CardDescription className="text-zinc-500">
+                        최근 접수된 지원자 목록
+                      </CardDescription>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-zinc-400 hover:text-white text-xs"
+                      onClick={() => setActiveNav("applicants")}
+                    >
+                      전체 보기 <ArrowUpRight className="h-3 w-3 ml-1" />
+                    </Button>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg font-bold text-white">
-                        {user.name}
-                      </span>
-                      {user.rank <= 3 && (
-                        <TrendingUp className="h-4 w-4 text-lime-400" />
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-zinc-800">
+                          <th className="text-left text-xs font-medium text-zinc-500 pb-3">
+                            지원자
+                          </th>
+                          <th className="text-left text-xs font-medium text-zinc-500 pb-3">
+                            포지션
+                          </th>
+                          <th className="text-left text-xs font-medium text-zinc-500 pb-3">
+                            상태
+                          </th>
+                          <th className="text-left text-xs font-medium text-zinc-500 pb-3">
+                            AI 점수
+                          </th>
+                          <th className="text-left text-xs font-medium text-zinc-500 pb-3">
+                            지원일
+                          </th>
+                          <th className="text-right text-xs font-medium text-zinc-500 pb-3">
+                            액션
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-zinc-800/50">
+                        {recentApplicants.map((applicant) => (
+                          <tr
+                            key={applicant.id}
+                            className="hover:bg-zinc-800/30 transition-colors"
+                          >
+                            <td className="py-3">
+                              <div className="flex items-center gap-3">
+                                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-xs font-bold">
+                                  {applicant.avatar}
+                                </div>
+                                <span className="text-sm font-medium text-white">
+                                  {applicant.name}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-3 text-sm text-zinc-400">
+                              {applicant.position}
+                            </td>
+                            <td className="py-3">
+                              <span
+                                className={`px-2.5 py-1 rounded-full text-xs font-medium ${applicant.statusColor}`}
+                              >
+                                {applicant.status}
+                              </span>
+                            </td>
+                            <td className="py-3">
+                              <div className="flex items-center gap-2">
+                                <div className="h-1.5 w-16 bg-zinc-800 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full ${applicant.score >= 90
+                                        ? "bg-emerald-500"
+                                        : applicant.score >= 80
+                                          ? "bg-blue-500"
+                                          : "bg-amber-500"
+                                      }`}
+                                    style={{
+                                      width: `${applicant.score}%`,
+                                    }}
+                                  />
+                                </div>
+                                <span className="text-xs font-semibold text-zinc-300">
+                                  {applicant.score}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-3 text-sm text-zinc-500">
+                              {applicant.date}
+                            </td>
+                            <td className="py-3 text-right">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-zinc-500 hover:text-white"
+                              >
+                                <Eye className="h-4 w-4" />
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* ===== JOBS VIEW ===== */}
+          {activeNav === "jobs" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-white">채용 공고 관리</h3>
+                  <p className="text-sm text-zinc-500 mt-1">
+                    총 {jobPostings.length}개의 채용 공고
+                  </p>
+                </div>
+                <Button className="bg-violet-600 hover:bg-violet-700 text-white font-medium">
+                  <Plus className="h-4 w-4 mr-2" />
+                  새 공고 작성
+                </Button>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="relative flex-1 max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                  <Input
+                    placeholder="채용 공고 검색..."
+                    className="pl-9 bg-zinc-900 border-zinc-800 text-sm text-white placeholder:text-zinc-500"
+                  />
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-zinc-800 text-zinc-400 hover:text-white bg-zinc-900"
+                >
+                  <Filter className="h-4 w-4 mr-2" />
+                  필터
+                </Button>
+              </div>
+
+              <div className="grid gap-4">
+                {jobPostings.map((job) => (
+                  <Card
+                    key={job.id}
+                    className="bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 transition-all cursor-pointer"
+                  >
+                    <CardContent className="p-5">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h4 className="text-base font-semibold text-white">
+                              {job.title}
+                            </h4>
+                            <span
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${job.statusColor}`}
+                            >
+                              {job.status}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm text-zinc-500">
+                            <span className="flex items-center gap-1.5">
+                              <Building2 className="h-3.5 w-3.5" />
+                              {job.department}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <MapPin className="h-3.5 w-3.5" />
+                              {job.location}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <CircleDot className="h-3.5 w-3.5" />
+                              {job.type}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="h-3.5 w-3.5" />
+                              마감: {job.deadline}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <div className="text-right">
+                            <div className="text-lg font-bold text-white">
+                              {job.applicants}
+                            </div>
+                            <div className="text-xs text-zinc-500">지원자</div>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-zinc-500 hover:text-white"
+                          >
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ===== APPLICANTS VIEW ===== */}
+          {activeNav === "applicants" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-white">지원자 관리</h3>
+                  <p className="text-sm text-zinc-500 mt-1">
+                    총 {allApplicants.length}명의 지원자
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    className="border-zinc-800 text-zinc-400 hover:text-white bg-zinc-900"
+                  >
+                    <FileText className="h-4 w-4 mr-2" />
+                    내보내기
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="relative flex-1 max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                  <Input
+                    placeholder="이름, 포지션으로 검색..."
+                    className="pl-9 bg-zinc-900 border-zinc-800 text-sm text-white placeholder:text-zinc-500"
+                  />
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-zinc-800 text-zinc-400 hover:text-white bg-zinc-900"
+                >
+                  <Filter className="h-4 w-4 mr-2" />
+                  필터
+                </Button>
+              </div>
+
+              <div className="grid gap-4">
+                {allApplicants.map((applicant) => (
+                  <Card
+                    key={applicant.id}
+                    className="bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 transition-all"
+                  >
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-4">
+                        <div className="h-12 w-12 rounded-full bg-gradient-to-br from-violet-500 to-indigo-500 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                          {applicant.name[0]}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 mb-1">
+                            <h4 className="text-base font-semibold text-white">
+                              {applicant.name}
+                            </h4>
+                            <span
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${applicant.statusColor}`}
+                            >
+                              {applicant.status}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm text-zinc-500 mb-3">
+                            <span className="flex items-center gap-1.5">
+                              <Briefcase className="h-3.5 w-3.5" />
+                              {applicant.position}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Clock className="h-3.5 w-3.5" />
+                              경력 {applicant.experience}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <GraduationCap className="h-3.5 w-3.5" />
+                              {applicant.education}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-4 text-xs text-zinc-500 mb-3">
+                            <span className="flex items-center gap-1.5">
+                              <Mail className="h-3 w-3" />
+                              {applicant.email}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Phone className="h-3 w-3" />
+                              {applicant.phone}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="h-3 w-3" />
+                              {applicant.appliedDate}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {applicant.tags.map((tag, i) => (
+                              <span
+                                key={i}
+                                className="px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-400 text-xs font-medium"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-3 flex-shrink-0">
+                          <div className="text-center">
+                            <div
+                              className={`text-2xl font-bold ${applicant.score >= 90
+                                  ? "text-emerald-400"
+                                  : applicant.score >= 80
+                                    ? "text-blue-400"
+                                    : applicant.score >= 70
+                                      ? "text-amber-400"
+                                      : "text-red-400"
+                                }`}
+                            >
+                              {applicant.score}
+                            </div>
+                            <div className="text-xs text-zinc-500">AI 점수</div>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-zinc-500 hover:text-emerald-400 hover:bg-emerald-500/10"
+                            >
+                              <CheckCircle2 className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-zinc-500 hover:text-red-400 hover:bg-red-500/10"
+                            >
+                              <XCircle className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-zinc-500 hover:text-white"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ===== AI ASSISTANT VIEW ===== */}
+          {activeNav === "ai" && (
+            <div className="flex flex-col h-[calc(100vh-7rem)]">
+              <div className="mb-4">
+                <h3 className="text-xl font-bold text-white">AI 어시스턴트</h3>
+                <p className="text-sm text-zinc-500 mt-1">
+                  면접 질문 생성, 채용 공고 작성, 지원자 분석 등을
+                  도와드립니다
+                </p>
+              </div>
+
+              <Card className="flex-1 flex flex-col bg-zinc-900/50 border-zinc-800 overflow-hidden">
+                <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                  {chatMessages.map((msg, i) => (
+                    <div
+                      key={i}
+                      className={`flex gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"
+                        }`}
+                    >
+                      {msg.role === "ai" && (
+                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
+                          <Bot className="h-4 w-4 text-white" />
+                        </div>
+                      )}
+                      <div
+                        className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-line ${msg.role === "user"
+                            ? "bg-violet-600 text-white rounded-br-sm"
+                            : "bg-zinc-800 text-zinc-200 rounded-bl-sm"
+                          }`}
+                      >
+                        {msg.content}
+                      </div>
+                      {msg.role === "user" && (
+                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                          관
+                        </div>
                       )}
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">
-                        {user.rank}위
-                      </span>
-                      <span className="text-xs text-zinc-400">
-                        {user.score.toLocaleString()}점
-                      </span>
+                  ))}
+                </div>
+
+                <div className="border-t border-zinc-800 p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    {[
+                      "면접 질문 만들어줘",
+                      "채용 공고 작성해줘",
+                      "지원자 분석해줘",
+                    ].map((suggestion, i) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          setChatInput(suggestion);
+                        }}
+                        className="px-3 py-1.5 rounded-full bg-zinc-800 border border-zinc-700 text-xs text-zinc-400 hover:text-white hover:border-violet-500/50 transition-all"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex gap-3">
+                    <Input
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      onKeyDown={(e) =>
+                        e.key === "Enter" && handleSendMessage()
+                      }
+                      placeholder="메시지를 입력하세요..."
+                      className="flex-1 bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-violet-500/50 focus:ring-violet-500/20"
+                    />
+                    <Button
+                      onClick={handleSendMessage}
+                      className="bg-violet-600 hover:bg-violet-700 text-white px-4"
+                    >
+                      <Send className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          )}
+
+          {/* ===== SETTINGS VIEW ===== */}
+          {activeNav === "settings" && (
+            <div className="space-y-6 max-w-3xl">
+              <div>
+                <h3 className="text-xl font-bold text-white">설정</h3>
+                <p className="text-sm text-zinc-500 mt-1">
+                  HR Agent 시스템 설정을 관리합니다
+                </p>
+              </div>
+
+              <Card className="bg-zinc-900/50 border-zinc-800">
+                <CardHeader>
+                  <CardTitle className="text-base text-white">
+                    회사 정보
+                  </CardTitle>
+                  <CardDescription className="text-zinc-500">
+                    기본 회사 정보를 설정합니다
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm text-zinc-400 mb-2 block">
+                        회사명
+                      </label>
+                      <Input
+                        defaultValue="테크 스타트업"
+                        className="bg-zinc-800 border-zinc-700 text-white"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400 mb-2 block">
+                        산업
+                      </label>
+                      <Input
+                        defaultValue="IT / 소프트웨어"
+                        className="bg-zinc-800 border-zinc-700 text-white"
+                      />
                     </div>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pb-3 px-5">
-                <div className="flex items-center gap-4 text-xs text-zinc-400">
-                  <div className="flex items-center gap-1.5">
-                    <ShoppingBag className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">거래 {user.trades}회</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Star className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">후기 {user.reviews}개</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="pt-3 border-t border-zinc-800 px-5 pb-5">
-                <div className="w-full">
-                  <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="text-zinc-400">활동 점수</span>
-                    <span className="font-semibold text-lime-400">
-                      {user.score.toLocaleString()}점
-                    </span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-zinc-800 overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 transition-all duration-500"
-                      style={{
-                        width: `${(user.score / 1250) * 100}%`,
-                      }}
+                  <div>
+                    <label className="text-sm text-zinc-400 mb-2 block">
+                      회사 주소
+                    </label>
+                    <Input
+                      defaultValue="서울특별시 강남구 테헤란로 123"
+                      className="bg-zinc-800 border-zinc-700 text-white"
                     />
                   </div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section>
+                </CardContent>
+              </Card>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-800 bg-zinc-950 py-14 mt-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-5">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow-lg shadow-lime-400/20">
-                <ShoppingBag className="h-6 w-6 text-black" />
+              <Card className="bg-zinc-900/50 border-zinc-800">
+                <CardHeader>
+                  <CardTitle className="text-base text-white">
+                    AI 설정
+                  </CardTitle>
+                  <CardDescription className="text-zinc-500">
+                    AI 어시스턴트의 동작을 설정합니다
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50">
+                    <div>
+                      <p className="text-sm font-medium text-white">
+                        자동 이력서 분석
+                      </p>
+                      <p className="text-xs text-zinc-500">
+                        새 지원서가 접수되면 자동으로 AI 분석을 실행합니다
+                      </p>
+                    </div>
+                    <div className="h-6 w-11 rounded-full bg-violet-600 relative cursor-pointer">
+                      <div className="absolute right-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-all" />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50">
+                    <div>
+                      <p className="text-sm font-medium text-white">
+                        면접 질문 자동 생성
+                      </p>
+                      <p className="text-xs text-zinc-500">
+                        면접 일정이 확정되면 AI가 자동으로 질문을 생성합니다
+                      </p>
+                    </div>
+                    <div className="h-6 w-11 rounded-full bg-violet-600 relative cursor-pointer">
+                      <div className="absolute right-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-all" />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50">
+                    <div>
+                      <p className="text-sm font-medium text-white">
+                        이메일 알림
+                      </p>
+                      <p className="text-xs text-zinc-500">
+                        채용 상태 변경 시 이메일 알림을 받습니다
+                      </p>
+                    </div>
+                    <div className="h-6 w-11 rounded-full bg-zinc-600 relative cursor-pointer">
+                      <div className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-all" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="flex justify-end">
+                <Button className="bg-violet-600 hover:bg-violet-700 text-white font-medium">
+                  변경사항 저장
+                </Button>
               </div>
-              <span className="text-2xl font-bold text-white">골드키위</span>
             </div>
-            <p className="text-sm text-zinc-500 text-center">
-              © 2024 골드키위. All rights reserved.
-            </p>
-          </div>
+          )}
         </div>
-      </footer>
+      </main>
     </div>
   );
 }
