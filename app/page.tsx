@@ -4,183 +4,152 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
-  Search,
-  Heart,
-  MapPin,
-  Clock,
-  ShoppingBag,
-  Laptop,
-  Shirt,
-  Sofa,
-  BookOpen,
-  Dumbbell,
-  MoreHorizontal,
+  FileText,
   Sparkles,
+  Database,
+  Brain,
   MessageSquare,
-  Eye,
-  User,
+  Code2,
+  Zap,
+  CheckCircle2,
   ArrowRight,
-  Trophy,
-  Medal,
-  Star,
+  Upload,
+  Search,
+  Bot,
+  Shield,
+  Layers,
+  GitBranch,
+  Workflow,
+  ListChecks,
+  Lock,
   TrendingUp,
 } from "lucide-react";
 
 export default function Home() {
-  const categories = [
+  const features = [
     {
-      name: "전자제품",
-      count: 1234,
-      icon: Laptop,
-      color: "from-blue-400 to-cyan-400",
+      icon: Upload,
+      title: "문서 자동 추출",
+      description: "프로젝트 단위로 다양한 형식의 문서를 자동으로 수집하고 파싱합니다",
+      color: "from-blue-500 to-cyan-500",
     },
     {
-      name: "의류",
-      count: 856,
-      icon: Shirt,
-      color: "from-pink-400 to-rose-400",
+      icon: Database,
+      title: "RAG 구축",
+      description: "벡터 DB 기반의 고성능 검색 시스템으로 문서 지식을 체계화합니다",
+      color: "from-purple-500 to-pink-500",
     },
     {
-      name: "가구",
-      count: 432,
-      icon: Sofa,
-      color: "from-orange-400 to-amber-400",
+      icon: MessageSquare,
+      title: "LLM 채팅",
+      description: "문서 컨텍스트를 이해하는 AI와 자연스러운 대화를 나눠보세요",
+      color: "from-green-500 to-emerald-500",
     },
     {
-      name: "도서",
-      count: 321,
-      icon: BookOpen,
-      color: "from-purple-400 to-violet-400",
+      icon: Code2,
+      title: "스키마 정의",
+      description: "원하는 데이터 구조를 정의하고 자동으로 추출합니다",
+      color: "from-orange-500 to-red-500",
     },
     {
-      name: "스포츠",
-      count: 567,
-      icon: Dumbbell,
-      color: "from-red-400 to-orange-400",
+      icon: Brain,
+      title: "지능형 분석",
+      description: "AI가 문서의 의미를 이해하고 인사이트를 제공합니다",
+      color: "from-indigo-500 to-blue-500",
     },
     {
-      name: "기타",
-      count: 890,
-      icon: MoreHorizontal,
-      color: "from-gray-400 to-slate-400",
+      icon: Workflow,
+      title: "워크플로우 자동화",
+      description: "반복적인 문서 처리 작업을 자동화하여 생산성을 높입니다",
+      color: "from-yellow-500 to-orange-500",
     },
   ];
 
-  const products = [
+  const stats = [
     {
-      id: 1,
-      title: "아이폰 14 Pro Max",
-      price: "850,000원",
-      location: "서울시 강남구",
-      time: "2시간 전",
-      image: "/images/products/product1.jpg",
-      likes: 23,
-      isNew: true,
+      label: "처리된 문서",
+      value: "5M+",
+      icon: FileText,
     },
     {
-      id: 2,
-      title: "나이키 운동화",
-      price: "80,000원",
-      location: "서울시 마포구",
-      time: "5시간 전",
-      image: "/images/products/product2.jpg",
-      likes: 15,
-      isNew: false,
+      label: "활성 프로젝트",
+      value: "12,000+",
+      icon: GitBranch,
     },
     {
-      id: 3,
-      title: "맥북 프로 13인치",
-      price: "1,200,000원",
-      location: "서울시 서초구",
-      time: "1일 전",
-      image: "/images/products/product3.jpg",
-      likes: 42,
-      isNew: true,
+      label: "평균 응답 시간",
+      value: "0.8초",
+      icon: Zap,
     },
     {
-      id: 4,
-      title: "에어팟 프로 2세대",
-      price: "200,000원",
-      location: "서울시 송파구",
-      time: "3시간 전",
-      image: "/images/products/product4.jpg",
-      likes: 31,
-      isNew: false,
+      label: "정확도",
+      value: "99.2%",
+      icon: TrendingUp,
+    },
+  ];
+
+  const useCases = [
+    {
+      icon: ListChecks,
+      title: "법률 문서 분석",
+      description: "계약서, 판례 등을 분석하고 중요 조항을 자동 추출",
     },
     {
-      id: 5,
-      title: "책상 의자",
-      price: "150,000원",
-      location: "서울시 용산구",
-      time: "6시간 전",
-      image: "/images/products/product5.jpg",
-      likes: 8,
-      isNew: false,
+      icon: FileText,
+      title: "기술 문서 관리",
+      description: "API 문서, 매뉴얼 등을 체계적으로 관리하고 검색",
     },
     {
-      id: 6,
-      title: "자전거",
-      price: "300,000원",
-      location: "서울시 종로구",
-      time: "1일 전",
-      image: "/images/products/product6.jpg",
-      likes: 19,
-      isNew: true,
+      icon: Layers,
+      title: "연구 논문 검색",
+      description: "방대한 논문 데이터베이스에서 관련 정보를 빠르게 찾기",
     },
     {
-      id: 7,
-      title: "갤럭시 워치",
-      price: "250,000원",
-      location: "서울시 영등포구",
-      time: "4시간 전",
-      image: "/images/products/product2.jpg",
-      likes: 27,
-      isNew: true,
+      icon: Shield,
+      title: "규정 준수 검증",
+      description: "문서가 규정을 준수하는지 자동으로 확인",
     },
-    {
-      id: 8,
-      title: "아이패드 에어",
-      price: "750,000원",
-      location: "서울시 강동구",
-      time: "1일 전",
-      image: "/images/products/product3.jpg",
-      likes: 35,
-      isNew: false,
-    },
+  ];
+
+  const benefits = [
+    "문서 처리 시간 85% 단축",
+    "검색 정확도 99% 이상",
+    "다국어 문서 지원",
+    "실시간 협업 가능",
+    "엔터프라이즈급 보안",
+    "무제한 확장 가능",
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-zinc-950/60 supports-[backdrop-filter]:backdrop-blur-2xl">
+      <header className="sticky top-0 z-50 w-full border-b border-blue-900/50 bg-slate-950/80 backdrop-blur-2xl">
         <div className="container mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow-lg shadow-lime-400/20">
-                <ShoppingBag className="h-6 w-6 text-black" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 smooth-shadow-lg shadow-blue-500/30">
+                <Brain className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">골드키위</h1>
-                <p className="text-xs text-zinc-400 font-medium">
-                  프리미엄 중고거래
+                <h1 className="text-2xl font-bold text-white">DocuRAG</h1>
+                <p className="text-xs text-blue-300 font-medium">
+                  AI 문서 인텔리전스 플랫폼
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Button
                 variant="ghost"
-                className="font-medium text-zinc-300 hover:text-white hover:bg-zinc-800"
+                className="font-medium text-blue-200 hover:text-white hover:bg-blue-900/50"
               >
                 로그인
               </Button>
-              <Button className="bg-gradient-to-r from-lime-400 to-yellow-400 text-black hover:from-lime-500 hover:to-yellow-500 smooth-shadow-lg shadow-lime-400/30 hover:shadow-lime-400/50 transition-all duration-300 font-semibold">
-                회원가입
+              <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 smooth-shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 font-semibold">
+                무료로 시작하기
               </Button>
             </div>
           </div>
@@ -188,437 +157,378 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center space-y-6 mb-12">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 text-sm font-semibold smooth-shadow backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 text-lime-400" />
-            <span>새로운 상품이 매일 업데이트됩니다</span>
+      <section className="container mx-auto px-4 py-20">
+        <div className="text-center space-y-8 mb-16">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-900/30 border border-blue-800/50 text-blue-300 text-sm font-semibold smooth-shadow backdrop-blur-sm">
+            <Sparkles className="h-4 w-4 text-blue-400 animate-pulse" />
+            <span>RAG + LLM 기반 차세대 문서 솔루션</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white">
-            원하는 상품을
+          <h2 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight text-white">
+            문서를 지식으로
             <br />
-            <span className="bg-gradient-to-r from-lime-400 via-yellow-400 to-lime-400 bg-clip-text text-transparent">
-              쉽고 빠르게
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+              지식을 인사이트로
             </span>
-            <br />
-            찾아보세요
           </h2>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            프리미엄 중고거래 플랫폼에서 최고의 상품을 만나보세요
+          <p className="text-xl text-blue-200 max-w-3xl mx-auto leading-relaxed">
+            프로젝트 문서를 AI가 이해하고, 학습하고, 대화합니다.
+            <br />
+            RAG 기술로 구축된 지능형 문서 관리 시스템을 경험하세요.
           </p>
-        </div>
-
-        {/* Search Bar */}
-        <div className="max-w-3xl mx-auto">
-          <div className="flex gap-3">
-            <div className="relative flex-1 group">
-              <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400 group-focus-within:text-lime-400 transition-colors duration-300" />
-              <Input
-                type="search"
-                placeholder="찾고 싶은 상품을 검색해보세요..."
-                className="pl-14 h-16 text-base border-2 border-zinc-800 focus:border-lime-400/50 focus:ring-2 focus:ring-lime-400/20 rounded-xl bg-zinc-900/50 backdrop-blur-sm smooth-shadow hover:shadow-md transition-all duration-300 text-white placeholder:text-zinc-500"
-              />
-            </div>
+          <div className="flex items-center justify-center gap-4 pt-4">
             <Button
               size="lg"
-              className="h-16 px-10 bg-gradient-to-r from-lime-400 to-yellow-400 text-black hover:from-lime-500 hover:to-yellow-500 smooth-shadow-lg shadow-lime-400/30 hover:shadow-lime-400/50 rounded-xl transition-all duration-300 font-semibold"
+              className="h-14 px-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 smooth-shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 rounded-xl transition-all duration-300 font-semibold text-base"
             >
-              검색
+              지금 시작하기
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 px-8 border-2 border-blue-500/50 text-blue-200 hover:bg-blue-900/30 hover:text-white rounded-xl font-semibold text-base"
+            >
+              <Bot className="mr-2 h-5 w-5" />
+              라이브 데모
             </Button>
           </div>
         </div>
-      </section>
 
-      {/* Categories */}
-      <section className="container mx-auto px-4 py-10">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2 text-white">카테고리</h2>
-          <p className="text-zinc-400">원하는 카테고리를 선택하세요</p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
-          {categories.map((category) => {
-            const Icon = category.icon;
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
             return (
-              <button
-                key={category.name}
-                className="group relative flex flex-col items-center gap-4 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 hover:bg-zinc-900 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-500"
+              <div
+                key={index}
+                className="p-6 rounded-2xl border border-blue-900/50 bg-gradient-to-br from-blue-950/50 to-cyan-950/30 backdrop-blur-sm smooth-shadow text-center"
               >
-                <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${category.color} smooth-shadow-lg group-hover:scale-110 transition-all duration-500`}
-                >
-                  <Icon className="h-8 w-8 text-white" />
+                <Icon className="h-8 w-8 text-blue-400 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-1">
+                  {stat.value}
                 </div>
-                <div className="text-center">
-                  <span className="block font-semibold text-base mb-1 text-white group-hover:text-lime-400 transition-colors">
-                    {category.name}
-                  </span>
-                  <span className="text-xs text-zinc-400 font-medium">
-                    {category.count.toLocaleString()}개
-                  </span>
-                </div>
-              </button>
+                <div className="text-sm text-blue-300">{stat.label}</div>
+              </div>
             );
           })}
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold mb-2 text-white">인기 상품</h2>
-            <p className="text-zinc-400">
-              지금 가장 인기 있는 상품들을 만나보세요
-            </p>
-          </div>
-          <Button
-            variant="ghost"
-            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
-          >
-            더보기 →
-          </Button>
+      {/* How It Works */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            작동 방식
+          </h2>
+          <p className="text-xl text-blue-300 max-w-2xl mx-auto">
+            3단계로 완성되는 AI 문서 지식 베이스
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {products.map((product) => (
-            <Card
-              key={product.id}
-              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer rounded-xl"
-            >
-              <div className="relative aspect-square w-full bg-zinc-950 overflow-hidden rounded-t-xl">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                {product.isNew && (
-                  <div className="absolute left-3 top-3 px-3 py-1 rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 text-black text-xs font-bold smooth-shadow-lg shadow-lime-400/30">
-                    NEW
-                  </div>
-                )}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-3 top-3 h-9 w-9 rounded-full bg-zinc-900/80 backdrop-blur-sm hover:bg-zinc-800 smooth-shadow-lg hover:scale-110 transition-all duration-300 border border-zinc-700"
-                >
-                  <Heart className="h-4 w-4 text-zinc-400 group-hover:fill-lime-400 group-hover:text-lime-400 transition-all" />
-                </Button>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+          <div className="relative">
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 smooth-shadow-lg">
+                <Upload className="h-10 w-10 text-white" />
               </div>
-              <CardHeader className="pb-2 px-4 pt-4">
-                <CardTitle className="line-clamp-2 text-base font-bold text-white group-hover:text-lime-400 transition-colors duration-300">
-                  {product.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pb-2 px-4">
-                <p className="text-xl font-bold bg-gradient-to-r from-lime-400 to-yellow-400 bg-clip-text text-transparent">
-                  {product.price}
-                </p>
-              </CardContent>
-              <CardFooter className="flex items-center justify-between text-xs text-zinc-400 pt-3 border-t border-zinc-800 px-4 pb-4">
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-zinc-500" />
-                  <span className="font-medium text-xs">
-                    {product.location}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <Heart className="h-3.5 w-3.5 fill-zinc-600 text-zinc-500" />
-                    <span className="font-semibold text-xs">
-                      {product.likes}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="text-xs">{product.time}</span>
-                  </div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
+              <div className="absolute -top-2 -right-2 h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg smooth-shadow">
+                1
+              </div>
+              <h3 className="text-2xl font-bold text-white">문서 업로드</h3>
+              <p className="text-blue-300 leading-relaxed">
+                프로젝트 문서를 드래그 앤 드롭하거나 폴더 단위로 업로드합니다. PDF, DOCX, Markdown 등 다양한 형식을 지원합니다.
+              </p>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 smooth-shadow-lg">
+                <Database className="h-10 w-10 text-white" />
+              </div>
+              <div className="absolute -top-2 -right-2 h-10 w-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-lg smooth-shadow">
+                2
+              </div>
+              <h3 className="text-2xl font-bold text-white">RAG 구축</h3>
+              <p className="text-blue-300 leading-relaxed">
+                AI가 문서를 분석하고 벡터화하여 의미 기반 검색이 가능한 지식 베이스를 자동으로 구축합니다.
+              </p>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 smooth-shadow-lg">
+                <MessageSquare className="h-10 w-10 text-white" />
+              </div>
+              <div className="absolute -top-2 -right-2 h-10 w-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-lg smooth-shadow">
+                3
+              </div>
+              <h3 className="text-2xl font-bold text-white">AI 대화</h3>
+              <p className="text-blue-300 leading-relaxed">
+                문서 내용을 기반으로 LLM과 대화하고, 필요한 정보를 추출하거나 인사이트를 얻으세요.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Community Board Preview */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold mb-2 text-white">
-              커뮤니티 게시판
-            </h2>
-            <p className="text-zinc-400">최근 게시글을 확인하고 소통해보세요</p>
-          </div>
-          <Button
-            variant="ghost"
-            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
-          >
-            게시판 보기 →
-          </Button>
+      {/* Features */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            핵심 기능
+          </h2>
+          <p className="text-xl text-blue-300 max-w-2xl mx-auto">
+            엔터프라이즈급 문서 인텔리전스 솔루션
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            {
-              id: 1,
-              title: "아이폰 15 구매 후기 공유합니다!",
-              author: "김철수",
-              views: 234,
-              comments: 12,
-              time: "2시간 전",
-              category: "후기",
-            },
-            {
-              id: 2,
-              title: "중고거래 시 주의사항 알려드려요",
-              author: "이영희",
-              views: 567,
-              comments: 28,
-              time: "5시간 전",
-              category: "정보",
-            },
-            {
-              id: 3,
-              title: "이번 주말에 벼룩시장 열립니다",
-              author: "박민수",
-              views: 189,
-              comments: 5,
-              time: "1일 전",
-              category: "이벤트",
-            },
-            {
-              id: 4,
-              title: "맥북 프로 추천해주세요",
-              author: "최지영",
-              views: 412,
-              comments: 19,
-              time: "3시간 전",
-              category: "질문",
-            },
-            {
-              id: 5,
-              title: "신뢰할 수 있는 판매자 추천받아요",
-              author: "정대현",
-              views: 678,
-              comments: 34,
-              time: "6시간 전",
-              category: "질문",
-            },
-            {
-              id: 6,
-              title: "거래 완료했습니다! 감사합니다",
-              author: "한소희",
-              views: 123,
-              comments: 8,
-              time: "1일 전",
-              category: "후기",
-            },
-          ].map((post) => (
-            <Card
-              key={post.id}
-              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
-            >
-              <CardHeader className="pb-3 px-5 pt-5">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-800 text-zinc-300 border border-zinc-700">
-                    {post.category}
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-zinc-500 group-hover:text-lime-400 group-hover:translate-x-1 transition-all" />
-                </div>
-                <CardTitle className="line-clamp-2 text-base font-bold text-white group-hover:text-lime-400 transition-colors duration-300">
-                  {post.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pb-3 px-5">
-                <div className="flex items-center gap-3 text-xs text-zinc-400">
-                  <div className="flex items-center gap-1.5">
-                    <User className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">{post.author}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <Card
+                key={index}
+                className="group overflow-hidden border border-blue-900/50 bg-gradient-to-br from-slate-900/80 to-blue-950/30 backdrop-blur-sm hover:border-blue-700/70 smooth-shadow hover:smooth-shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer rounded-2xl"
+              >
+                <CardHeader className="pb-4">
+                  <div
+                    className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${feature.color} smooth-shadow-lg mb-4 group-hover:scale-110 transition-transform duration-500`}
+                  >
+                    <Icon className="h-8 w-8 text-white" />
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
-                    <span>{post.time}</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex items-center justify-between text-xs text-zinc-400 pt-3 border-t border-zinc-800 px-5 pb-5">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1.5">
-                    <Eye className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">{post.views}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <MessageSquare className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">{post.comments}</span>
-                  </div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
+                  <CardTitle className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-blue-300 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
-      {/* User Ranking */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold mb-2 text-white">유저 랭킹</h2>
-            <p className="text-zinc-400">
-              이번 달 가장 활발한 유저들을 확인해보세요
-            </p>
+      {/* Schema Extraction Demo */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-900/30 border border-blue-800/50 text-blue-300 text-sm font-semibold mb-6">
+                <Code2 className="h-4 w-4 text-blue-400" />
+                <span>구조화된 데이터 추출</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                스키마 정의로
+                <br />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  원하는 데이터만
+                </span>
+              </h2>
+              <p className="text-xl text-blue-300 mb-8 leading-relaxed">
+                JSON 스키마를 정의하면 AI가 문서에서 해당 구조에 맞는 데이터를 자동으로 추출합니다. 계약서에서 날짜와 금액, 논문에서 실험 결과 등 원하는 정보를 정확하게 가져오세요.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white font-semibold">유연한 스키마 설계</p>
+                    <p className="text-blue-300 text-sm">원하는 데이터 구조를 자유롭게 정의</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white font-semibold">배치 처리 지원</p>
+                    <p className="text-blue-300 text-sm">대량의 문서를 한 번에 처리</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white font-semibold">검증 및 필터링</p>
+                    <p className="text-blue-300 text-sm">추출된 데이터의 품질 자동 확인</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="rounded-2xl border border-blue-900/50 bg-slate-900/80 backdrop-blur-sm p-6 smooth-shadow-lg overflow-hidden">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-400" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                  <span className="ml-2 text-blue-300 text-sm font-medium">schema.json</span>
+                </div>
+                <pre className="text-blue-300 text-sm leading-relaxed overflow-x-auto">
+{`{
+  "type": "contract",
+  "fields": {
+    "parties": ["string"],
+    "date": "date",
+    "amount": "number",
+    "terms": {
+      "duration": "string",
+      "payment_schedule": ["string"]
+    }
+  }
+}`}
+                </pre>
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl" />
+              <div className="absolute -top-4 -left-4 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl" />
+            </div>
           </div>
-          <Button
-            variant="ghost"
-            className="text-sm font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-xl"
-          >
-            전체 랭킹 보기 →
-          </Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            {
-              id: 1,
-              rank: 1,
-              name: "김중고왕",
-              score: 1250,
-              trades: 45,
-              reviews: 32,
-              avatar: "👑",
-            },
-            {
-              id: 2,
-              rank: 2,
-              name: "이거래왕",
-              score: 1120,
-              trades: 38,
-              reviews: 28,
-              avatar: "⭐",
-            },
-            {
-              id: 3,
-              rank: 3,
-              name: "박신뢰",
-              score: 980,
-              trades: 35,
-              reviews: 25,
-              avatar: "🏆",
-            },
-            {
-              id: 4,
-              rank: 4,
-              name: "최안전거래",
-              score: 875,
-              trades: 32,
-              reviews: 22,
-              avatar: "💎",
-            },
-            {
-              id: 5,
-              rank: 5,
-              name: "정우수판매자",
-              score: 820,
-              trades: 28,
-              reviews: 20,
-              avatar: "✨",
-            },
-            {
-              id: 6,
-              rank: 6,
-              name: "한빠른거래",
-              score: 765,
-              trades: 25,
-              reviews: 18,
-              avatar: "🚀",
-            },
-          ].map((user) => (
-            <Card
-              key={user.id}
-              className="group overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm hover:border-zinc-700 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
-            >
-              <CardHeader className="pb-3 px-5 pt-5">
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 text-3xl border-2 border-zinc-700">
-                      {user.avatar}
-                    </div>
-                    {user.rank <= 3 && (
-                      <div className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow">
-                        {user.rank === 1 ? (
-                          <Trophy className="h-3.5 w-3.5 text-black" />
-                        ) : user.rank === 2 ? (
-                          <Medal className="h-3.5 w-3.5 text-black" />
-                        ) : (
-                          <Star className="h-3.5 w-3.5 text-black" />
-                        )}
-                      </div>
-                    )}
+      </section>
+
+      {/* Use Cases */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            활용 사례
+          </h2>
+          <p className="text-xl text-blue-300 max-w-2xl mx-auto">
+            다양한 산업과 업무에서 DocuRAG를 활용하고 있습니다
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {useCases.map((useCase, index) => {
+            const Icon = useCase.icon;
+            return (
+              <Card
+                key={index}
+                className="group border border-blue-900/50 bg-gradient-to-br from-slate-900/80 to-blue-950/30 backdrop-blur-sm hover:border-blue-700/70 smooth-shadow hover:smooth-shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer rounded-xl"
+              >
+                <CardHeader>
+                  <Icon className="h-12 w-12 text-blue-400 mb-3 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">
+                    {useCase.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-blue-300 text-sm leading-relaxed">
+                    {useCase.description}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-blue-900/50 bg-gradient-to-r from-blue-950/40 to-cyan-950/20 backdrop-blur-sm smooth-shadow hover:smooth-shadow-lg hover:translate-x-2 transition-all duration-300"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 smooth-shadow flex-shrink-0">
+                    <CheckCircle2 className="h-6 w-6 text-white" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg font-bold text-white">
-                        {user.name}
-                      </span>
-                      {user.rank <= 3 && (
-                        <TrendingUp className="h-4 w-4 text-lime-400" />
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">
-                        {user.rank}위
-                      </span>
-                      <span className="text-xs text-zinc-400">
-                        {user.score.toLocaleString()}점
-                      </span>
-                    </div>
-                  </div>
+                  <span className="text-lg font-semibold text-white">
+                    {benefit}
+                  </span>
                 </div>
-              </CardHeader>
-              <CardContent className="pb-3 px-5">
-                <div className="flex items-center gap-4 text-xs text-zinc-400">
-                  <div className="flex items-center gap-1.5">
-                    <ShoppingBag className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">거래 {user.trades}회</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Star className="h-3.5 w-3.5 text-zinc-500" />
-                    <span className="font-medium">후기 {user.reviews}개</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="pt-3 border-t border-zinc-800 px-5 pb-5">
-                <div className="w-full">
-                  <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="text-zinc-400">활동 점수</span>
-                    <span className="font-semibold text-lime-400">
-                      {user.score.toLocaleString()}점
-                    </span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-zinc-800 overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-lime-400 to-yellow-400 transition-all duration-500"
-                      style={{
-                        width: `${(user.score / 1250) * 100}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
+              ))}
+            </div>
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-900/30 border border-blue-800/50 text-blue-300 text-sm font-semibold mb-6">
+                <Shield className="h-4 w-4 text-blue-400" />
+                <span>엔터프라이즈 솔루션</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                왜 DocuRAG를
+                <br />
+                선택해야 할까요?
+              </h2>
+              <p className="text-xl text-blue-300 mb-8 leading-relaxed">
+                최첨단 RAG 기술과 LLM을 결합하여 문서 처리의 새로운 기준을 제시합니다. 보안, 정확도, 속도 모두를 만족시킵니다.
+              </p>
+              <Button
+                size="lg"
+                className="h-14 px-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 smooth-shadow-lg shadow-blue-500/30 rounded-xl font-semibold"
+              >
+                고객 사례 보기
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-blue-800/50 bg-gradient-to-br from-blue-900/50 via-cyan-900/30 to-teal-900/30 backdrop-blur-sm p-12 text-center smooth-shadow-xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" />
+            <div className="relative z-10">
+              <Zap className="h-16 w-16 text-blue-400 mx-auto mb-6 animate-pulse" />
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                지금 바로 시작하세요
+              </h2>
+              <p className="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
+                14일 무료 체험으로 DocuRAG의 강력한 기능을 경험해보세요.
+                <br />
+                신용카드가 필요하지 않습니다.
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                <Button
+                  size="lg"
+                  className="h-16 px-10 bg-white text-blue-600 hover:bg-blue-50 smooth-shadow-lg hover:smooth-shadow-xl rounded-xl transition-all duration-300 font-bold text-lg"
+                >
+                  무료로 시작하기
+                  <ArrowRight className="ml-2 h-6 w-6" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-16 px-10 border-2 border-white text-white hover:bg-white/10 rounded-xl font-bold text-lg"
+                >
+                  <Lock className="mr-2 h-6 w-6" />
+                  엔터프라이즈 문의
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800 bg-zinc-950 py-14 mt-20">
+      <footer className="border-t border-blue-900/50 bg-slate-950 py-14 mt-20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-col items-center gap-6">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-400 to-yellow-400 smooth-shadow-lg shadow-lime-400/20">
-                <ShoppingBag className="h-6 w-6 text-black" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 smooth-shadow-lg shadow-blue-500/30">
+                <Brain className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-white">골드키위</span>
+              <span className="text-2xl font-bold text-white">DocuRAG</span>
             </div>
-            <p className="text-sm text-zinc-500 text-center">
-              © 2024 골드키위. All rights reserved.
+            <p className="text-sm text-blue-400 text-center">
+              © 2024 DocuRAG. All rights reserved.
             </p>
+            <div className="flex items-center gap-6 text-sm text-blue-400">
+              <a href="#" className="hover:text-blue-300 transition-colors">
+                제품
+              </a>
+              <a href="#" className="hover:text-blue-300 transition-colors">
+                가격
+              </a>
+              <a href="#" className="hover:text-blue-300 transition-colors">
+                문서
+              </a>
+              <a href="#" className="hover:text-blue-300 transition-colors">
+                API
+              </a>
+              <a href="#" className="hover:text-blue-300 transition-colors">
+                고객 지원
+              </a>
+            </div>
           </div>
         </div>
       </footer>

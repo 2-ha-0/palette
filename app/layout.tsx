@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "중고마켓 - 중고거래 사이트",
-  description: "안전하고 편리한 중고거래 플랫폼",
+  title: "DocuRAG - AI 문서 인텔리전스 플랫폼",
+  description: "RAG 기술과 LLM을 활용한 지능형 문서 관리 시스템. 프로젝트 문서를 AI가 이해하고 대화합니다.",
 };
 
 export default function RootLayout({
